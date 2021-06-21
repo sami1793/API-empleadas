@@ -3,22 +3,33 @@ package ar.com.ada.api.empleadas.entities;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="empleada")
 public class Empleada {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="empleada_id")
     private Integer empleadaId;
 
     private String nombre;
 
     private Integer edad;
-
+    
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", referencedColumnName = "categoria_id")
     private Categoria categoria;
 
     private BigDecimal sueldo;
 
     private int estado;
 
+    @Column(name="fecha_alta")
     private Date fechaAlta;
 
+    @Column(name="fecha_baja")
     private Date fechaBaja;
 
     
