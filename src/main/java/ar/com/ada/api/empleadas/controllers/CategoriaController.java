@@ -23,7 +23,7 @@ public class CategoriaController {
         service.crearCategoria(categoria);
 
         respuesta.isOk=true;//porque si llegue hasta acá es porque esta todo bien
-        respuesta.id= categoria.getCategoria_Id();
+        respuesta.id= categoria.getCategoriaId();
         respuesta.message= "La categoria fue creada con éxito";
 
         return ResponseEntity.ok(respuesta);

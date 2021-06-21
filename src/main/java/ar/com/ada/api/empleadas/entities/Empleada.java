@@ -18,12 +18,13 @@ public class Empleada {
 
     private Integer edad;
     
-    @ManyToOne
+    @ManyToOne    
     @JoinColumn(name = "categoria_id", referencedColumnName = "categoria_id")
     private Categoria categoria;
 
     private BigDecimal sueldo;
 
+    @Column(name="estado_id")
     private int estado;
 
     @Column(name="fecha_alta")
@@ -64,6 +65,7 @@ public class Empleada {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+        this.categoria.agregarEmpleada(this);
     }
 
     public BigDecimal getSueldo() {
@@ -102,7 +104,7 @@ public class Empleada {
 
     public enum EstadoEmpleadaEnum{
         ACTIVO(1),
-        INACTIVO(2);
+        BAJA(2);
 
         private final int value;
 

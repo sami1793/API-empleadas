@@ -13,7 +13,7 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="categoria_id")
-    private Integer categoria_Id;
+    private Integer categoriaId;
 
     private String nombre;
 
@@ -23,12 +23,12 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Empleada> empleadas= new ArrayList<>();
 
-    public Integer getCategoria_Id() {
-        return categoria_Id;
+    public Integer getCategoriaId() {
+        return categoriaId;
     }
 
-    public void setCategoria_Id(Integer categoria_Id) {
-        this.categoria_Id = categoria_Id;
+    public void setCategoriaId(Integer categoriaId) {
+        this.categoriaId = categoriaId;
     }
 
     public String getNombre() {
@@ -48,5 +48,16 @@ public class Categoria {
     }
 
     
+    public List<Empleada> getEmpleadas() {
+        return empleadas;
+    }
+
+    public void setEmpleadas(List<Empleada> empleadas) {
+        this.empleadas = empleadas;
+    }
+
+    public void agregarEmpleada(Empleada empleada){
+        this.empleadas.add(empleada);
+    }
 
 }
