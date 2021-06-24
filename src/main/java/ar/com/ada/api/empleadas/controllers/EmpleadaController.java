@@ -68,6 +68,13 @@ public class EmpleadaController {
         Empleada empleada = service.buscarEmpleada(id);
         return ResponseEntity.ok(empleada);
     }
+
+    @GetMapping("/empleados/categorias/{catId}")
+    public ResponseEntity <List<Empleada>> obtenerEmpleadasPorCategoria(@PathVariable Integer catId) {
+        List <Empleada> empleadas = service.traerEmpleadasPorCategoria(catId);
+        return ResponseEntity.ok(empleadas);
+    }
+    
     
 
 }
