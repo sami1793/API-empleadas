@@ -1,5 +1,6 @@
 package ar.com.ada.api.empleadas.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.empleadas.entities.Categoria;
 import ar.com.ada.api.empleadas.entities.Empleada;
+import ar.com.ada.api.empleadas.entities.Empleada.EstadoEmpleadaEnum;
 import ar.com.ada.api.empleadas.repos.EmpleadaRepository;
 
 @Service
@@ -36,9 +38,19 @@ public class EmpleadaService {
     }
 
     public List<Empleada> traerEmpleadasPorCategoria(Integer catId) {
-        
+
         Categoria categoria = categoriaService.buscarCategoria(catId);
         return categoria.getEmpleadas();
+    }
+
+    public void bajaEmpleadaPorId(Integer empleadaId){
+
+        Empleada empleada= buscarEmpleada(empleadaId);
+
+        empleada.setEstado(EstadoEmpleadaEnum.BAJA);
+        empleada.setFechaBaja(new Date());
+
+        repo.save(empleada);//IMPORTANTE despues de hacer un cambio
     }
     
 }
